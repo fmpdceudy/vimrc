@@ -2247,7 +2247,9 @@ fu! s:DoGetTypeInfoForFQN(fqns, srcpath, ...)
     endfor
 
     let cwd = fnamemodify(expand('%:p:h'), ':p:h:gs?[\\/]\+?/?')
-    exe 'vimgrep /\s*' . s:RE_TYPE_DECL . '/jg ' . filepatterns
+    if filereadable(filepatterns)
+      exe 'vimgrep /\s*' . s:RE_TYPE_DECL . '/jg ' . filepatterns
+    endif
     for item in getqflist()
       if item.text !~ '^\s*\*\s\+'
 	let text = matchstr(s:Prune(item.text, -1), '\s*' . s:RE_TYPE_DECL)
