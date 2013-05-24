@@ -1,5 +1,5 @@
 "设置字典自动完成
-set complete+=k;
+setlocal complete+=k;
 "设置字典
-set dictionary =~/.perl.dictionary
+setlocal dictionary =~/.perl.dictionary
 call indent#enable()
