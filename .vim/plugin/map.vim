@@ -1,10 +1,13 @@
-if exists('g:loaded_tab')
+if exists('g:loaded_map')
     finish
 endif
-let g:loaded_tab =1
+let g:loaded_map =1
+
+"<F8>打开或关闭taglist窗口
+nnoremap <silent> <F8> :TlistToggle<CR>
 
 "自动完成TAB键
-let s:pats=['\k', '\.', '(', '>']
+let s:pats=['\k', '\.', '(', '>', '\/']
 function InsertTabWrapper()
     let col=col('.')-1
     let str=getline('.')[col-1]
