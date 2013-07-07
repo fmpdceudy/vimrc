@@ -22,3 +22,18 @@ function InsertTabWrapper()
 endfunction
 "将InsertTabWrapper映射到TAB上
 inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
+
+"切换显示行号/相对行号/不显示
+function Nhz_toggle_number()
+        if &rnu
+                setlocal nornu
+                setlocal nolist
+        elseif &nu
+                setlocal rnu
+        else
+                setlocal list
+                setlocal nu
+        endif
+endfunction
+" <F7> 切换
+nnoremap <silent> <F7> :call Nhz_toggle_number()<CR>
