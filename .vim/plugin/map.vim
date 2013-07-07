@@ -3,8 +3,9 @@ if exists('g:loaded_map')
 endif
 let g:loaded_map =1
 
-"<F8>打开或关闭taglist窗口
-nnoremap <silent> <F8> :TlistToggle<CR>
+"<F8>打开或关闭文件窗口和taglist窗口
+let g:winManagerWindowLayout='FileExplorer|TagList'
+nnoremap <silent> <F8> :WMToggle<CR>
 
 "自动完成TAB键
 let s:pats=['\k', '\.', '(', '>', '\/']
