@@ -4,6 +4,9 @@ endif
 let g:loaded_map =1
 
 "<F8>打开或关闭文件窗口和taglist窗口
+let g:persistentBehaviour=0
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
 let g:winManagerWindowLayout='FileExplorer|TagList'
 nnoremap <silent> <F8> :WMToggle<CR>
 
