@@ -2905,7 +2905,7 @@ fu! s:enumBody(enumName)
   if b:token == 'SEMI'
     call s:nextToken()
     while b:token != 'RBRACE' && b:token != 'EOF'
-      call add(defs, s:classOrInterfaceBodyDeclaration(a:enumName, 0))
+      let defs += s:classOrInterfaceBodyDeclaration(a:enumName, 0)
       if b:pos <= b:errorEndPos
 	call s:skip(0, 1, 1, 0)
       endif
@@ -2936,6 +2936,7 @@ fu! s:enumeratorDeclaration(enumName)
   let identPos = b:pos
   let vardef.name = s:ident()
   let vardef.n = vardef.name
+  let vardef.t = java_parser#type2Str( a:enumName )
 
   let args = b:token == 'LPAREN' ? s:arguments() : []
 
