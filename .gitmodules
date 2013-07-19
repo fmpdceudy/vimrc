@@ -4,3 +4,6 @@
 [submodule ".vim/bundle/winmanager"]
 	path = .vim/bundle/winmanager
 	url = https://github.com/vim-scripts/winmanager.git
+[submodule ".vim/bundle/javacomplete"]
+	path = .vim/bundle/javacomplete
+	url = git@github.com:fmpdceudy/javacomplete.git
