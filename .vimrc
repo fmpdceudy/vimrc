@@ -41,6 +41,8 @@ set laststatus=2            "always show the status line
 "---------------------------------------------
 "编程相关
 "---------------------------------------------
+" 启用pathogen,以子git的模式加载插件
+execute pathogen#infect()
 filetype on
 filetype plugin on
 filetype indent on
