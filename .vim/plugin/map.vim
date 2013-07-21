@@ -10,23 +10,6 @@ let Tlist_Exit_OnlyWindow=1
 let g:winManagerWindowLayout='FileExplorer|TagList'
 nnoremap <silent> <F8> :WMToggle<CR>
 
-"自动完成TAB键
-let s:pats=['\k', '\.', '(', '>', '\/']
-function InsertTabWrapper()
-    let col=col('.')-1
-    let str=getline('.')[col-1]
-    if col
-        for pat in s:pats
-            if str =~ pat
-                return "\<C-N>"
-            endif
-        endfor
-    endif
-    return "\<TAB>"
-endfunction
-"将InsertTabWrapper映射到TAB上
-inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
-
 "切换显示行号/相对行号/不显示
 function Nhz_toggle_number()
         if &rnu

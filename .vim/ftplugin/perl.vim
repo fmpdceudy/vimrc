@@ -2,4 +2,3 @@
 setlocal complete+=k;
 "设置字典
 setlocal dictionary =~/.perl.dictionary
-call indent#enable()
