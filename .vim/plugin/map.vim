@@ -1,13 +1,11 @@
-if exists('g:loaded_map')
+if exists('g:loaded_plugin_map')
     finish
 endif
-let g:loaded_map =1
+let g:loaded_plugin_map =1
 
-"<F8>打开或关闭文件窗口和taglist窗口
-let g:persistentBehaviour=0
-let Tlist_Show_One_File=1
-let Tlist_Exit_OnlyWindow=1
-let g:winManagerWindowLayout='FileExplorer|TagList'
+" <F7> 切换行号
+nnoremap <silent> <F7> :call Nhz_toggle_number()<CR>
+" <F8>打开或关闭winmanager
 nnoremap <silent> <F8> :WMToggle<CR>
 
 "切换显示行号/相对行号/不显示
@@ -22,5 +20,3 @@ function Nhz_toggle_number()
                 setlocal nu
         endif
 endfunction
-" <F7> 切换
-nnoremap <silent> <F7> :call Nhz_toggle_number()<CR>
