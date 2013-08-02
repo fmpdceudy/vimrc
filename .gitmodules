@@ -1,15 +1,18 @@
-[submodule ".vim/bundle/xml.vim"]
-	path = .vim/bundle/xml.vim
-	url = https://github.com/othree/xml.vim
 [submodule ".vim/bundle/winmanager"]
 	path = .vim/bundle/winmanager
 	url = https://github.com/vim-scripts/winmanager.git
-[submodule ".vim/bundle/javacomplete"]
-	path = .vim/bundle/javacomplete
-	url = git@github.com:fmpdceudy/javacomplete.git
 [submodule ".vim/bundle/neocomplcache"]
 	path = .vim/bundle/neocomplcache
 	url = https://github.com/vim-scripts/neocomplcache.git
-[submodule ".vim/bundle/perlomni.vim"]
-	path = .vim/bundle/perlomni.vim
+[submodule ".vim/bundle/perlomni"]
+	path = .vim/bundle/perlomni
 	url = https://github.com/c9s/perlomni.vim.git
+[submodule ".vim/bundle/xml"]
+	path = .vim/bundle/xml
+	url = https://github.com/othree/xml.vim
+[submodule ".vim/bundle/sudo"]
+	path = .vim/bundle/sudo
+	url = https://github.com/vim-scripts/sudo.vim.git
+[submodule ".vim/bundle/javacomplete"]
+	path = .vim/bundle/javacomplete
+	url = https://github.com/fmpdceudy/javacomplete.git
