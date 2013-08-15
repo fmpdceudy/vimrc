@@ -6,6 +6,10 @@ let g:loaded_plugin_map =1
 " nmap{{{1
 " <F2> 打开bufexplorer{{{2
 nnoremap <silent> <F2> :BufExplorer<CR>
+" <F3> 打开VimExplorer{{{2
+nnoremap <silent> <F3> :VE<CR>
+" <F4> 自动缩进全文{{{2
+nnoremap <silent> <F4> gg=G
 " <F7> 切换行号{{{2
 nnoremap <silent> <F7> :call Nhz_toggle_number()<CR>
 " <F8> 打开或关闭winmanager{{{2
@@ -15,8 +19,9 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
-" 自动缩进全文{{{2
-nnoremap <silent> <F4> gg=G
+" C-np 切换tab{{{2
+nnoremap <C-N> gt
+nnoremap <C-P> gT
 " imap{{{1
 " TAB补全{{{2
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"

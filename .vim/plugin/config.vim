@@ -14,9 +14,13 @@ let g:bufExplorerSplitVertical=1
 let g:bufExplorerSplitVertSize=30
 autocmd BufWinEnter \[Buf List\] setl nonumber
 " winmanager{{{2
-let g:persistentBehaviour= 0               " 只剩一个窗口时，退出vim
-let g:winManagerWindowLayout='FileExplorer|TagList'
-                                            " 打开两个窗口，依次为目录窗口，taglist窗口。
+let g:persistentBehaviour= 0                " 只剩一个窗口时，退出vim
+let g:winManagerWindowLayout='TagList'      " 打开taglist窗口
+" set tags{{{2
+let s:file = findfile("tags",".;")
+if !empty(s:file)
+    execute "set tags+=".s:file
+endif
 " taglist{{{2
 let Tlist_Show_One_File=1                   " 只显示当前文件的tag
 let Tlist_Exit_OnlyWindow=1                 " 在taglist是最后一个窗口时退出vim.
