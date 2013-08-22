@@ -50,5 +50,17 @@ let g:neocomplcache_omni_patterns.perl = '\h\w*->\|\h\w*->\h\w*\|\h\w*::\|\h\w*:
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : '',
     \}
+augroup filetypeplugin
+    au FileType * call s:Loaddict()
+" 函数{{{1
+" 加载字典{{{2
+func! s:Loaddict()
+    let s = expand("<amatch>")
+    if s != ""
+        for name in split(s, '\.')
+            let g:neocomplcache_dictionary_filetype_lists[name] = '~/.vim/dict/'. name .'.txt'
+        endfor
+    endif
+endfunction
 " Vim Modeline{{{1
 " vim:set fdm=marker:
