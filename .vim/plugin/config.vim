@@ -24,13 +24,17 @@ endif
 " taglist{{{2
 let Tlist_Show_One_File=1                   " 只显示当前文件的tag
 let Tlist_Exit_OnlyWindow=1                 " 在taglist是最后一个窗口时退出vim.
+" NERD_Tree{{{2
+let NERDTreeChDirMode=2                     " 选中root即设置为当前目录
+let NERDTreeMinimalUI=1                     " 不显示帮助面板
+let NERDTreeDirArrows=0                     " 目录箭头 1 显示箭头  0传统+-|号
 " neocomplcache{{{2
 " Use neocomplcache
 let g:neocomplcache_enable_at_startup = 1
 " Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
 " Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_min_syntax_length = 2
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 " 补全所有buffer 里的内容{{{3
 " http://forum.ubuntu.org.cn/viewtopic.php?f=68&t=429131&p=3002378#p3002378

@@ -6,8 +6,8 @@ let g:loaded_plugin_map =1
 " nmap{{{1
 " <F2> 打开bufexplorer{{{2
 nnoremap <silent> <F2> :BufExplorer<CR>
-" <F3> 打开VimExplorer{{{2
-nnoremap <silent> <F3> :VE<CR>
+" <F3> 打开Nerd{{{2
+nnoremap <silent> <F3> :NERDTreeToggle<CR>
 " <F4> 自动缩进全文{{{2
 nnoremap <silent> <F4> gg=G
 " <F7> 切换行号{{{2

@@ -18,7 +18,7 @@ set listchars=precedes:«,extends:»,tab:▸·,trail:∙,eol:¶
 set list                    "显示制表符
 set nu                      "显示行号
 set wrap                    "自动换行
-set linebreak               "整词换行，经测试当set list时，此项无效
+set nolinebreak             "取消整词换行
 set whichwrap=b,s,<,>,[,]   "光标从行首和行末时可以跳到另一行去
 set scrolloff=5             "Minimal number of screen lines to keep above and below the cursor.
                             "当光标上下移动时上下至少预留的行数，若为5，即下移光标至底部还有五行时，
@@ -37,6 +37,10 @@ set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%]
 set laststatus=2            "always show the status line
 "---------------------------------------------
 " 编程相关
+" pathogen禁用某些插件
+let g:pathogen_disabled=[]
+call add(g:pathogen_disabled, 'javacomplete')
+call add(g:pathogen_disabled, 'VimExplorer')
 " 启用pathogen,以子git的模式加载插件
 execute pathogen#infect()
 filetype on

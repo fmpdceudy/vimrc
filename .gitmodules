@@ -22,3 +22,6 @@
 [submodule ".vim/bundle/VimExplorer"]
 	path = .vim/bundle/VimExplorer
 	url = https://github.com/mbbill/VimExplorer.git
+[submodule ".vim/bundle/NERD"]
+	path = .vim/bundle/NERD
+	url = https://github.com/vim-scripts/The-NERD-tree.git
