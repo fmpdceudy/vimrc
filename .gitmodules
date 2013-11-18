@@ -25,3 +25,6 @@
 [submodule ".vim/bundle/NERD"]
 	path = .vim/bundle/NERD
 	url = https://github.com/vim-scripts/The-NERD-tree.git
+[submodule ".vim/bundle/neosnippet"]
+	path = .vim/bundle/neosnippet
+	url = https://github.com/Shougo/neosnippet.vim.git

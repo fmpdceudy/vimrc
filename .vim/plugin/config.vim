@@ -56,6 +56,12 @@ let g:neocomplcache_dictionary_filetype_lists = {
     \}
 augroup filetypeplugin
     au FileType * call s:Loaddict()
+" neosnippet {{{2
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/snippets'
 " 函数{{{1
 " 加载字典{{{2
 func! s:Loaddict()

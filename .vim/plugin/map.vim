@@ -23,8 +23,12 @@ nnoremap <C-L> <C-W>l
 nnoremap <C-N> gt
 nnoremap <C-P> gT
 " imap{{{1
-" TAB补全{{{2
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" TAB补全和snippet跳转{{{2
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+            \ (pumvisible() ? "\<C-n>" : "\<Plug>(neosnippet_expand_or_jump)")
+            \: ( pumvisible() ? "\<C-n>" : "\<TAB>")
+" snippet 选中和跳转{{{2
+ imap <expr><C-k>     "\<Plug>(neosnippet_expand_or_jump)"
 " 方向键{{{2
 " For cursor moving in insert mode(Not recommended)
 " 经测试是使用方向键移动鼠标时不弹出或关闭匹配列表
