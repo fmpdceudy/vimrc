@@ -3,23 +3,25 @@ if exists('g:loaded_plugin_map')
     finish
 endif
 let g:loaded_plugin_map =1
-" nmap{{{1
-" <F2> 打开bufexplorer{{{2
-nnoremap <silent> <F2> :BufExplorer<CR>
-" <F3> 打开Nerd{{{2
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
-" <F4> 自动缩进全文{{{2
-nnoremap <silent> <F4> gg=G
-" <F7> 切换行号{{{2
-nnoremap <silent> <F7> :call Nhz_toggle_number()<CR>
-" <F8> 打开或关闭winmanager{{{2
-nnoremap <silent> <F8> :WMToggle<CR>
-" C-hjkl 切换window{{{2
+" jmap{{{1
+" windows{{{2
+" wb 打开bufexplorer{{{3
+nnoremap <silent> wb :BufExplorer<CR>
+" wf 打开Nerd{{{3
+nnoremap <silent> wf :NERDTreeToggle<CR>
+" wn 切换行号{{{3
+nnoremap <silent> wn :call Nhz_toggle_number()<CR>
+" wt 打开或关闭winmanager{{{3
+nnoremap <silent> wt :WMToggle<CR>
+" C-hjkl 切换window{{{3
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
-" C-np 切换tab{{{2
+" = 自动缩进全文{{{2
+nnoremap <silent> = gg=G
+" tabs{{{2
+" C-np 切换tab{{{3
 nnoremap <C-N> gt
 nnoremap <C-P> gT
 " imap{{{1
