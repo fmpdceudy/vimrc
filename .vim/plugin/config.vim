@@ -28,6 +28,8 @@ let Tlist_Exit_OnlyWindow=1                 " 在taglist是最后一个窗口时
 let NERDTreeChDirMode=2                     " 选中root即设置为当前目录
 let NERDTreeMinimalUI=1                     " 不显示帮助面板
 let NERDTreeDirArrows=0                     " 目录箭头 1 显示箭头  0传统+-|号
+let NERDTreeWinSize=20                      " 宽度
+let NERDTreeWinPos='right'                  " 在右侧显示窗口
 " neocomplcache{{{2
 " Use neocomplcache
 let g:neocomplcache_enable_at_startup = 1
@@ -56,12 +58,19 @@ let g:neocomplcache_dictionary_filetype_lists = {
     \}
 augroup filetypeplugin
     au FileType * call s:Loaddict()
-" neosnippet {{{2
+" neosnippet{{{2
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
 
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.vim/snippets'
+" eclim{{{2
+" 设置omnifunc,进行补全提示
+let g:EclimCompletionMethod = 'omnifunc'
+" 补全提示只显示menu,不显示preview
+set completeopt=menu
+" 关闭临时文件生成
+let g:EclimTempFilesEnable = 0
 " 函数{{{1
 " 加载字典{{{2
 func! s:Loaddict()
