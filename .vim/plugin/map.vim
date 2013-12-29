@@ -67,12 +67,12 @@ function s:check_or_execute()
     elseif &filetype == 'perl'
         return ":!clear;perl %\<CR>"
     else
-        let project = eclim#project#util#GetCurrentProjectName()
-        " this is a eclim project
-        if project !=''
-            return ":Ant\<CR>"
-        else
-            return
+        if nhz#Has_bundle( 'eclim' )
+            let project = eclim#project#util#GetCurrentProjectName()
+            " this is a eclim project
+            if project !=''
+                return ":Ant\<CR>"
+            endif
         endif
     endif
 endfunction
