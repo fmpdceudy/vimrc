@@ -17,10 +17,10 @@ nnoremap wk <C-W>k
 nnoremap wh <C-W>h
 nnoremap wl <C-W>l
 " <F5> 根据文件类型检查或编译文件{{{2
-nnoremap <expr> <silent> <F5> Fpeu_check()
+nnoremap <expr> <silent> <F5> <SID>check_or_execute()
 " views{{{2
 " en 切换行号{{{3
-nnoremap <silent> en :call Fpeu_toggle_number()<CR>
+nnoremap <silent> en :call <SID>toggle_number()<CR>
 " = 自动缩进全文{{{3
 nnoremap <silent> = gg=G
 " <space> 打开，关闭折叠{{{3
@@ -48,7 +48,7 @@ inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
 vnoremap <silent> <space> zf
 " 函数{{{1
 " 切换显示行号/相对行号/不显示{{{2
-function Fpeu_toggle_number()
+function s:toggle_number()
     if &rnu && &nu
         setlocal nonu
         setlocal nornu
@@ -61,7 +61,7 @@ function Fpeu_toggle_number()
     endif
 endfunction
 " 根据文件类型检查或执行文件{{{2
-function! Fpeu_check()
+function s:check_or_execute()
     if &filetype == 'php'
         return ":!clear;php -l %\<CR>"
     elseif &filetype == 'perl'
