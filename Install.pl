@@ -4,14 +4,19 @@ use warnings;
 use Cwd;
 my $pwd = getcwd;
 my %plugins = (
-    "winmanager"        => "https://github.com/vim-scripts/winmanager.git",
-    "neocomplcache"     => "https://github.com/vim-scripts/neocomplcache.git",
+    #功能
     "perlomni"          => "https://github.com/c9s/perlomni.vim.git",
-    "xml"               => "https://github.com/othree/xml.vim",
     "sudo"              => "https://github.com/vim-scripts/sudo.vim.git",
+    "vimproc"           => "https://github.com/Shougo/vimproc.vim.git",
+    "context_filetype"  => "https://github.com/Shougo/context_filetype.vim.git",
+    #补全
+    "neocomplcache"     => "https://github.com/vim-scripts/neocomplcache.git",
+    "neosnippet"        => "https://github.com/Shougo/neosnippet.vim.git",
+    #界面相关
     "bufexplorer"       => "https://github.com/vim-scripts/bufexplorer.zip.git",
     "NERD"              => "https://github.com/vim-scripts/The-NERD-tree.git",
-    "neosnippet"        => "https://github.com/Shougo/neosnippet.vim.git",
+    "vimshell"          => "https://github.com/Shougo/vimshell.vim.git",
+    "tagbar"            => "https://github.com/majutsushi/tagbar.git",
     );
 my $budle = ".vim/bundle/";
 if( !defined $ARGV[0] ) {

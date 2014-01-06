@@ -5,12 +5,22 @@ endif
 let g:loaded_plugin_map =1
 " nmap{{{1
 " windows{{{2
-" wb 打开bufexplorer{{{3
-nnoremap <silent> wb :BufExplorer<CR>
-" wf 打开Nerd{{{3
-nnoremap <silent> wf :NERDTreeToggle<CR>
-" wt 打开或关闭winmanager{{{3
-nnoremap <silent> wt :WMToggle<CR>
+if nhz#Has_bundle( 'bufexplorer' ) "{{{3
+    " wb 打开bufexplorer
+    nnoremap <silent> wb :BufExplorer<CR>
+endif
+if nhz#Has_bundle( 'NERD' ) "{{{3
+    " wf 打开Nerd
+    nnoremap <silent> wf :NERDTreeToggle<CR>
+endif
+if nhz#Has_bundle( 'vimshell' ) "{{{3
+    " ws 打开shell
+    nnoremap <silent> ws :VimShellPop<CR>
+endif
+if nhz#Has_bundle( 'tagbar' ) "{{{3
+    " wt 打开或关闭tagbar
+    nnoremap <silent> wt :TagbarToggle<CR>
+endif
 " w-hjkl 切换window{{{3
 nnoremap wj <C-W>j
 nnoremap wk <C-W>k
@@ -18,6 +28,13 @@ nnoremap wh <C-W>h
 nnoremap wl <C-W>l
 " <F5> 根据文件类型检查或编译文件{{{2
 nnoremap <expr> <silent> <F5> <SID>check_or_execute()
+" git{{{2
+" gs status{{{3
+nnoremap gs :!git status .<CR>
+" ga add{{{3
+nnoremap ga :!git add %<CR>
+" gd diff{{{3
+nnoremap gd :!git diff %<CR>
 " views{{{2
 " en 切换行号{{{3
 nnoremap <silent> en :call <SID>toggle_number()<CR>
@@ -31,29 +48,38 @@ nnoremap tn gt
 nnoremap tp gT
 " imap{{{1
 " TAB补全和snippet跳转{{{2
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-            \ (pumvisible() ? "\<C-n>" : "\<Plug>(neosnippet_expand_or_jump)")
-            \: ( pumvisible() ? "\<C-n>" : "\<TAB>")
+if nhz#Has_bundle( 'neosnippet' )
+    imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+                \ (pumvisible() ? "\<C-n>" : "\<Plug>(neosnippet_expand_or_jump)")
+                \: ( pumvisible() ? "\<C-n>" : "\<TAB>")
+else
+    imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+endif
 " snippet 选中和跳转{{{2
-imap <expr><C-k>     "\<Plug>(neosnippet_expand_or_jump)"
+if nhz#Has_bundle( 'neosnippet' )
+    imap <expr><C-k>     "\<Plug>(neosnippet_expand_or_jump)"
+endif
 " 方向键{{{2
-" For cursor moving in insert mode(Not recommended)
-" 经测试是使用方向键移动鼠标时不弹出或关闭匹配列表
-inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
-inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+if nhz#Has_bundle( 'neocomplcache' )
+    " For cursor moving in insert mode(Not recommended)
+    " 经测试是使用方向键移动鼠标时不弹出或关闭匹配列表
+    inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
+    inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
+    inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
+    inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+endif
 " vmap{{{1
 " <space> 折叠选中行{{{2
 vnoremap <silent> <space> zf
 " 函数{{{1
 " 切换显示行号/相对行号/不显示{{{2
 function s:toggle_number()
-    if &rnu && &nu
+    if &rnu
         setlocal nonu
         setlocal nornu
         setlocal nolist
-    elseif &nu && !&rnu
+    elseif &nu
+        setlocal nonu
         setlocal rnu
     else
         setlocal list

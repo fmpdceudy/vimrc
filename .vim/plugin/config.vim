@@ -18,7 +18,9 @@ endif
 " winmanager{{{2
 if nhz#Has_bundle( 'winmanager' )
     let g:persistentBehaviour= 0                " 只剩一个窗口时，退出vim
-    let g:winManagerWindowLayout='TagList'      " 打开taglist窗口
+    if nhz#Has_bundle( 'taglist' )
+        let g:winManagerWindowLayout='TagList'      " 打开taglist窗口
+    endif
 endif
 " set tags{{{2
 let s:file = findfile("tags",".;")
@@ -26,6 +28,13 @@ if !empty(s:file)
     execute "set tags+=".s:file
 endif
 unlet s:file
+" tagbar{{{2
+if nhz#Has_bundle( 'tagbar' )
+    " 左侧显示
+    let g:tagbar_left = 1
+    " 宽度
+    let g:tagbar_width = 20
+endif
 " taglist{{{2
 if nhz#Has_bundle( 'taglist' )
     let Tlist_Show_One_File=1                   " 只显示当前文件的tag
