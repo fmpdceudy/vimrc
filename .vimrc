@@ -3,7 +3,11 @@ set nocompatible            "关闭兼容模式，支持vim类型文件在注释
 "---------------------------------------------
 " pathogen
 " 启用pathogen, load plugins in .vim/bundle
-execute pathogen#infect()
+let pathogen = expand( "~/.vim/bundle/pathogen" )
+if isdirectory( pathogen )
+    execute 'set runtimepath^=' . pathogen
+    execute pathogen#infect()
+endif
 "---------------------------------------------
 " 编程相关
 filetype on

@@ -5,19 +5,23 @@ use Cwd;
 my $pwd = getcwd;
 my %plugins = (
     #功能
-    "perlomni"          => "https://github.com/c9s/perlomni.vim.git",
-    "sudo"              => "https://github.com/vim-scripts/sudo.vim.git",
-    "vimproc"           => "https://github.com/Shougo/vimproc.vim.git",
-    "context_filetype"  => "https://github.com/Shougo/context_filetype.vim.git",
+    "pathogen"          => "tpope/vim-pathogen",
+    "perlomni"          => "c9s/perlomni.vim",
+    "sudo"              => "sudo.vim",
+    "vimproc"           => "Shougo/vimproc.vim",
+    "context_filetype"  => "Shougo/context_filetype.vim",
     #补全
-    "neocomplcache"     => "https://github.com/vim-scripts/neocomplcache.git",
-    "neosnippet"        => "https://github.com/Shougo/neosnippet.vim.git",
+    "neocomplcache"     => "neocomplcache",
+    "neosnippet"        => "Shougo/neosnippet.vim",
     #界面相关
-    "bufexplorer"       => "https://github.com/vim-scripts/bufexplorer.zip.git",
-    "NERD"              => "https://github.com/vim-scripts/The-NERD-tree.git",
-    "vimshell"          => "https://github.com/Shougo/vimshell.vim.git",
-    "tagbar"            => "https://github.com/majutsushi/tagbar.git",
+    "bufexplorer"       => "bufexplorer.zip",
+    "NERD"              => "The-NERD-tree",
+    "vimshell"          => "Shougo/vimshell.vim",
+    "tagbar"            => "majutsushi/tagbar",
     );
+my %install = (
+    "vimproc"           => "make",
+);
 my $budle = ".vim/bundle/";
 if( !defined $ARGV[0] ) {
     print "install: reinstall plugins\n";
@@ -31,11 +35,12 @@ if( $ARGV[0] eq "install" ) {
     `echo .gitignore >> .gitignore`;
     while( my ($path, $git) = each %plugins ) {
         $path = $budle.$path;
+        $git = &gitaddr( $git );
         print $path."\n";
         if ( -d $path ) {
             `rm -fr $path`;
         }
-        `git clone $git $path`;
+        `git clone $git $path --depth 1`;
         `echo $path >> .gitignore`;
     }
 }
@@ -46,15 +51,43 @@ if( $ARGV[0] eq "update" ) {
     `echo .gitignore >> .gitignore`;
     while( my ($path, $git) = each %plugins ) {
         $path = $budle.$path;
+        $git = &gitaddr( $git );
         print $path."\n";
         if ( -d $path ) {
             chdir $path;
-            `git pull`;
-            `git checkout .`;
-            chdir $pwd;
+            my $origin = readpipe( 'git remote show origin |grep Fetch|sed "s/^ *Fetch URL: * //"' );
+            chomp( $origin );
+            if( $origin eq $git ) {
+                `git pull`;
+                `git checkout .`;
+                chdir $pwd;
+            } else {
+                chdir $pwd;
+                `rm -fr $path`;
+                `git clone $git $path --depth 1`;
+            }
         } else {
-            `git clone $git $path`;
+            `git clone $git $path --depth 1`;
         }
         `echo $path >> .gitignore`;
+    }
+}
+if( $ARGV[0] eq "update" || $ARGV[0] eq "install" ) {
+    while( my ($path, $cmd) = each %install ) {
+        $path = $budle.$path;
+        chdir $path;
+        system( $cmd );
+        chdir $pwd;
+    }
+}
+sub gitaddr {
+    my ($git) = @_;
+    $git =~ s/\.git$//;
+    if ( $git =~ "^\(http|git|https\):" ) {
+        return $git."\.git";
+    } elsif ( $git =~ '/' ) {
+        return 'https://github.com/'.$git.'.git';
+    } else {
+        return 'https://github.com/vim-scripts/'.$git.'.git';
     }
 }
