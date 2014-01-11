@@ -11,7 +11,7 @@ my %plugins = (
     "vimproc"           => "Shougo/vimproc.vim",
     "context_filetype"  => "Shougo/context_filetype.vim",
     #补全
-    "neocomplcache"     => "neocomplcache",
+    "neocomplete"       => "Shougo/neocomplete.vim",
     "neosnippet"        => "Shougo/neosnippet.vim",
     #界面相关
     "bufexplorer"       => "bufexplorer.zip",

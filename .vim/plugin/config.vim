@@ -49,7 +49,7 @@ if nhz#Has_bundle( 'NERD' )
     let NERDTreeWinPos='right'                  " 在右侧显示窗口
 endif
 " neocomplcache{{{2
-if nhz#Has_bundle( 'neocomplcache' )
+if nhz#Has_bundle( 'neocomplcache' ) && nhz#Has_bundle( 'neocomplete' )
     " Use neocomplcache
     let g:neocomplcache_enable_at_startup = 1
     " Use smartcase.
@@ -75,16 +75,46 @@ if nhz#Has_bundle( 'neocomplcache' )
     let g:neocomplcache_dictionary_filetype_lists = {
         \ 'default' : '',
         \}
-    function s:Loaddict()"{{{4
+    function s:Loaddict() "{{{4
         let s = expand("<amatch>")
         if s != ""
             for name in split(s, '\.')
                 let g:neocomplcache_dictionary_filetype_lists[name] = '~/.vim/dict/'. name .'.txt'
             endfor
         endif
-    endfunction"}}}4
+    endfunction "}}}4
     augroup filetypeplugin
         au FileType * call s:Loaddict()
+    "}}}
+endif
+" neocomplete{{{2
+if nhz#Has_bundle( 'neocomplete' )
+    " use neocomplete
+    let g:neocomplete#enable_at_startup = 1
+    " Use smartcase
+    let g:neocomplete#enable_smart_case = 1
+    " Set minumum syntax keyword length
+    let g:neocomplete#sources#syntax#min_keyword_length = 2
+    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+    let g:neocomplete#enable_insert_char_pre = 1
+    " 定义关键字{{{3
+    if !exists('g:neocomplete#keyword_patterns')
+        let g:neocomplete#keyword_patterns = {}
+    endif
+    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+    " omni function{{{3
+    if !exists('g:neocomplete#sources#omni#functions')
+        let g:neocomplete#sources#omni#functions = {}
+    endif
+    " 触发omnifunc条件{{{3
+    if !exists('g:neocomplete#sources#omni#input_patterns')
+        let g:neocomplete#sources#omni#input_patterns = {}
+    endif
+    let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\|\h\w*->\h\w*\|\h\w*::\|\h\w*::\h\w*'
+    " 根据文件类型选用dict字典{{{3
+    let g:neocomplete#sources#dictionary#dictionaries = {
+        \ 'default' : '',
+        \}
     "}}}
 endif
 " neosnippet{{{2
