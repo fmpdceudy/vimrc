@@ -118,6 +118,8 @@ if nhz#Has_bundle( 'neocomplete' )
     let g:neocomplete#sources#dictionary#dictionaries = {
         \ 'default' : '',
         \}
+    augroup filetypeplugin
+        au FileType * call nhz#Loaddict( g:neocomplete#sources#dictionary#dictionaries )
     "}}}
 endif
 " neosnippet{{{2
