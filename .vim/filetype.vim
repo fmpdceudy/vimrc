@@ -1,3 +1,6 @@
+let s:cpo_save = &cpo
+set cpo&vim
+
 " 检查文件类型时忽略某些后缀
 " 来自https://github.com/lilydjwg/dotvim/blob/master/filetype.vim
 if exists("*fnameescape")
@@ -11,3 +14,5 @@ endif
 augroup filetypedetect
     autocmd BufNewFile,BufRead *.md         setfiletype markdown
 augroup END
+let &cpo = s:cpo_save
+unlet s:cpo_save
