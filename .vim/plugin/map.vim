@@ -26,8 +26,10 @@ nnoremap wj <C-W>j
 nnoremap wk <C-W>k
 nnoremap wh <C-W>h
 nnoremap wl <C-W>l
-" <F5> 根据文件类型检查或编译文件{{{2
-nnoremap <expr> <silent> <F5> <SID>check_or_execute()
+" <F5> 根据文件类型运行文件{{{2
+nnoremap <expr> <silent> <F5> <SID>execute()
+" <F7> 根据文件类型检查或编译文件{{{2
+nnoremap <expr> <silent> <F7> <SID>check_or_compile()
 " git{{{2
 " gs status{{{3
 nnoremap gs :!git status .<CR>
@@ -86,8 +88,16 @@ function s:toggle_number()
         setlocal nu
     endif
 endfunction
-" 根据文件类型检查或执行文件{{{2
-function s:check_or_execute()
+" 根据文件类型运行文件{{{2
+function s:execute()
+    if nhz#Has_bundle( 'eclim' )
+        if &filetype == 'java'
+            return ":Java %\<CR>"
+        endif
+    endif
+endfunction
+" 根据文件类型检查或编译文件{{{2
+function s:check_or_compile()
     if &filetype == 'php'
         return ":!clear;php -l %\<CR>"
     elseif &filetype == 'perl'
