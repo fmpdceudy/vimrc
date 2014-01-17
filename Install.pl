@@ -10,6 +10,7 @@ my %plugins = (
     "sudo"              => "sudo.vim",
     "vimproc"           => "Shougo/vimproc.vim",
     "context_filetype"  => "Shougo/context_filetype.vim",
+    "neo-snippets"      => "Shougo/neosnippet-snippets",
     #补全
     "neocomplete"       => "Shougo/neocomplete.vim",
     "neosnippet"        => "Shougo/neosnippet.vim",

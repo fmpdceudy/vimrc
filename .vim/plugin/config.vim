@@ -49,7 +49,7 @@ if nhz#Has_bundle( 'NERD' )
     let NERDTreeWinPos='right'                  " 在右侧显示窗口
 endif
 " neocomplcache{{{2
-if nhz#Has_bundle( 'neocomplcache' ) && nhz#Has_bundle( 'neocomplete' )
+if nhz#Has_bundle( 'neocomplcache' ) && !nhz#Has_bundle( 'neocomplete' )
     " Use neocomplcache
     let g:neocomplcache_enable_at_startup = 1
     " Use smartcase.
@@ -96,7 +96,6 @@ if nhz#Has_bundle( 'neocomplete' )
     " Set minumum syntax keyword length
     let g:neocomplete#sources#syntax#min_keyword_length = 2
     let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-    let g:neocomplete#enable_insert_char_pre = 1
     " 定义关键字{{{3
     if !exists('g:neocomplete#keyword_patterns')
         let g:neocomplete#keyword_patterns = {}
@@ -111,6 +110,10 @@ if nhz#Has_bundle( 'neocomplete' )
         let g:neocomplete#sources#omni#input_patterns = {}
     endif
     let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\|\h\w*->\h\w*\|\h\w*::\|\h\w*::\h\w*'
+    " force omni{{{3
+    if !exists('g:neocomplete#force_omni_input_patterns')
+        let g:neocomplete#force_omni_input_patterns = {}
+    endif
     " 根据文件类型选用dict字典{{{3
     let g:neocomplete#sources#dictionary#dictionaries = {
         \ 'default' : '',
@@ -121,9 +124,6 @@ endif
 if nhz#Has_bundle( 'neosnippet' )
     " Enable snipMate compatibility feature.
     let g:neosnippet#enable_snipmate_compatibility = 1
-
-    " Tell Neosnippet about the other snippets
-    let g:neosnippet#snippets_directory='~/.vim/snippets'
 endif
 " eclim{{{2
 if nhz#Has_bundle( 'eclim' )
