@@ -6,14 +6,20 @@ my $pwd = getcwd;
 my %plugins = (
     #功能
     "pathogen"          => "tpope/vim-pathogen",
-    "perlomni"          => "c9s/perlomni.vim",
     "sudo"              => "sudo.vim",
     "vimproc"           => "Shougo/vimproc.vim",
-    "context_filetype"  => "Shougo/context_filetype.vim",
-    "neo-snippets"      => "Shougo/neosnippet-snippets",
-    #补全
+    "grep"              => "yegappan/grep",
+    "a"                 => "a.vim",
+    #文件类型
+    "context-filetype"  => "Shougo/context_filetype.vim",
+    #omni
+    "perlomni"          => "c9s/perlomni.vim",
+    "phpcomplete"       => "shawncplus/phpcomplete.vim",
+    "clang-complete"    => "Rip-Rip/clang_complete",
+    #补全环境
     "neocomplete"       => "Shougo/neocomplete.vim",
     "neosnippet"        => "Shougo/neosnippet.vim",
+    "neo-snippets"      => "Shougo/neosnippet-snippets",
     #界面相关
     "bufexplorer"       => "bufexplorer.zip",
     "NERD"              => "The-NERD-tree",

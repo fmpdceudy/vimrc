@@ -110,9 +110,21 @@ if nhz#Has_bundle( 'neocomplete' )
         let g:neocomplete#sources#omni#input_patterns = {}
     endif
     let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\|\h\w*->\h\w*\|\h\w*::\|\h\w*::\h\w*'
+    let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
     " force omni{{{3
     if !exists('g:neocomplete#force_omni_input_patterns')
         let g:neocomplete#force_omni_input_patterns = {}
+    endif
+    if nhz#Has_bundle( 'clang-complete' )
+        let g:neocomplete#force_overwrite_completefunc = 1
+        let g:neocomplete#force_omni_input_patterns.c =
+              \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+        let g:neocomplete#force_omni_input_patterns.cpp =
+              \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+        let g:neocomplete#force_omni_input_patterns.objc =
+              \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+        let g:neocomplete#force_omni_input_patterns.objcpp =
+              \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
     endif
     " 根据文件类型选用dict字典{{{3
     let g:neocomplete#sources#dictionary#dictionaries = {
@@ -135,6 +147,13 @@ if nhz#Has_bundle( 'eclim' )
     set completeopt=menu
     " 关闭临时文件生成
     let g:EclimTempFilesEnable = 0
+endif
+" clang_complete{{{2
+if nhz#Has_bundle( 'clang-complete' )
+    let g:clang_complete_auto = 0
+    let g:clang_auto_select = 0
+    let g:clang_use_library = 1
+    let g:clang_periodic_quickfix = 0
 endif
 " Vim Modeline{{{1
 " vim:set fdm=marker:
