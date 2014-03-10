@@ -10,6 +10,7 @@ my %plugins = (
     "vimproc"           => "Shougo/vimproc.vim",
     "grep"              => "yegappan/grep",
     "a"                 => "a.vim",
+    "tools/phpctags"    => "vim-php/phpctags",
     #文件类型
     "context-filetype"  => "Shougo/context_filetype.vim",
     #omni
@@ -25,11 +26,14 @@ my %plugins = (
     "NERD"              => "The-NERD-tree",
     "vimshell"          => "Shougo/vimshell.vim",
     "tagbar"            => "majutsushi/tagbar",
+    "tagbar-phpctags"   => "vim-php/tagbar-phpctags.vim",
     );
 my %install = (
     "vimproc"           => "make",
+    "tools/phpctags"    => "make; cp phpctags ../../tagbar-phpctags/",
 );
 my $budle = ".vim/bundle/";
+mkdir ".vim/bundle/tools";
 if( !defined $ARGV[0] ) {
     print "install: reinstall plugins\n";
     print "update: update plugins\n";
