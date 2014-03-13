@@ -34,6 +34,13 @@ if nhz#Has_bundle( 'tagbar' )
     let g:tagbar_left = 1
     " 宽度
     let g:tagbar_width = 20
+    au FileType * call s:loadtype()
+    function! s:loadtype()
+        let s = expand( "<amatch>" )
+        for name in split( s, '\.' )
+            exec 'runtime! tagbar/' . name . '.vim'
+        endfor
+    endfunction
 endif
 " taglist{{{2
 if nhz#Has_bundle( 'taglist' )
