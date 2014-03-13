@@ -122,6 +122,9 @@ if nhz#Has_bundle( 'neocomplete' )
     if !exists('g:neocomplete#force_omni_input_patterns')
         let g:neocomplete#force_omni_input_patterns = {}
     endif
+    if nhz#Has_bundle( 'eclim' )
+        let g:neocomplete#force_omni_input_patterns.java = '\%(\h\w*\|)\)\.\w*'
+    endif
     if nhz#Has_bundle( 'clang-complete' )
         let g:neocomplete#force_overwrite_completefunc = 1
         let g:neocomplete#force_omni_input_patterns.c =
