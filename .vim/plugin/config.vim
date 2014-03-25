@@ -197,7 +197,6 @@ if nhz#Has_bundle( 'vim-ibus' )
             let b:ibustoggle = 0
         endif
     endfunction
-    set noesckeys
     autocmd InsertLeave *
             \ call s:IBusDiable()
     autocmd InsertEnter *
