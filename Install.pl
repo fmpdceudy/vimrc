@@ -61,6 +61,7 @@ if( $ARGV[0] eq "update" ) {
         unlink ".gitignore";
     }
     `echo .gitignore >> .gitignore`;
+    `echo .netrwhist > .vim/.gitignore`;
     while( my ($path, $git) = each %plugins ) {
         $path = $budle.$path;
         $git = &gitaddr( $git );
