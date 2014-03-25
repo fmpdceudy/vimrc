@@ -11,6 +11,7 @@ my %plugins = (
     "grep"              => "yegappan/grep",
     "a"                 => "a.vim",
     "tools/phpctags"    => "vim-php/phpctags",
+    "vimwiki"           => "vimwiki/vimwiki",
     #文件类型
     "context-filetype"  => "Shougo/context_filetype.vim",
     #omni

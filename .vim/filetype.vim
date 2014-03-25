@@ -12,7 +12,6 @@ endif
 
 "文件类型检查
 augroup filetypedetect
-    autocmd BufNewFile,BufRead *.md         setfiletype markdown
 augroup END
 let &cpo = s:cpo_save
 unlet s:cpo_save

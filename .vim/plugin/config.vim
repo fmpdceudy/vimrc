@@ -165,5 +165,17 @@ if nhz#Has_bundle( 'clang-complete' )
     let g:clang_use_library = 1
     let g:clang_periodic_quickfix = 0
 endif
+" vimwiki{{{2
+if nhz#Has_bundle( 'vimwiki' )
+    let g:vimwiki_list = [{
+        \ 'path' : '~/.vimwiki' ,
+        \ 'syntax' : 'markdown' ,
+        \ 'ext': '.md' ,
+        \ 'path_html' : '~/.vimwiki/html' ,
+        \ }]
+  let g:vimwiki_ext2syntax = {'.md': 'markdown',
+        \ '.mkd': 'markdown',
+        \ '.wiki': 'media'}
+endif
 " Vim Modeline{{{1
 " vim:set fdm=marker:
