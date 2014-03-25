@@ -179,5 +179,29 @@ if nhz#Has_bundle( 'vimwiki' )
         \ '.mkd': 'markdown',
         \ '.wiki': 'media'}
 endif
+" vim-ibus{{{2
+if nhz#Has_bundle( 'vim-ibus' )
+    function! s:IBusDiable()
+        if ibus#is_enabled()
+            call ibus#disable()
+            let b:ibustoggle = 1
+        endif
+    endfunction
+    function! s:IBusRenable()
+        if exists( "b:ibustoggle" )
+            if b:ibustoggle == 1
+                call ibus#enable()
+                let b:ibustoggle = 0
+            endif
+        else
+            let b:ibustoggle = 0
+        endif
+    endfunction
+    set noesckeys
+    autocmd InsertLeave *
+            \ call s:IBusDiable()
+    autocmd InsertEnter *
+            \ call s:IBusRenable()
+endif
 " Vim Modeline{{{1
 " vim:set fdm=marker:
