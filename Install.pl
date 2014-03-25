@@ -13,6 +13,7 @@ my %plugins = (
     "tools/phpctags"    => "vim-php/phpctags",
     "vimwiki"           => "vimwiki/vimwiki",
     "vim-ibus"          => "bouzuya/vim-ibus",
+    "vimcdoc"           => "jkeylu/vimcdoc",
     #文件类型
     "context-filetype"  => "Shougo/context_filetype.vim",
     #omni
