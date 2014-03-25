@@ -92,6 +92,7 @@ if nhz#Has_bundle( 'neocomplcache' ) && !nhz#Has_bundle( 'neocomplete' )
     endfunction "}}}4
     augroup filetypeplugin
         au FileType * call s:Loaddict()
+    augroup END
     "}}}
 endif
 " neocomplete{{{2
@@ -142,6 +143,7 @@ if nhz#Has_bundle( 'neocomplete' )
         \}
     augroup filetypeplugin
         au FileType * call nhz#Loaddict( g:neocomplete#sources#dictionary#dictionaries )
+    augroup END
     "}}}
 endif
 " neosnippet{{{2
