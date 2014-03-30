@@ -4,32 +4,42 @@ use warnings;
 use Cwd;
 my $pwd = getcwd;
 my %plugins = (
-    #功能
+    #插件管理{{{1
     "pathogen"          => "tpope/vim-pathogen",
-    "sudo"              => "sudo.vim",
-    "vimproc"           => "Shougo/vimproc.vim",
-    "grep"              => "yegappan/grep",
-    "a"                 => "a.vim",
-    "tools/phpctags"    => "vim-php/phpctags",
-    "vimwiki"           => "vimwiki/vimwiki",
-    "vim-ibus"          => "bouzuya/vim-ibus",
+    #中文相关{{{1
+    #帮助文档{{{2
     "vimcdoc"           => "jkeylu/vimcdoc",
-    #文件类型
-    "context-filetype"  => "Shougo/context_filetype.vim",
-    #omni
-    "perlomni"          => "c9s/perlomni.vim",
-    "phpcomplete"       => "shawncplus/phpcomplete.vim",
-    "clang-complete"    => "Rip-Rip/clang_complete",
-    #补全环境
+    #输入法切换{{{2
+    "vim-ibus"          => "bouzuya/vim-ibus",
+    #工具{{{1
+    "sudo"              => "sudo.vim",
+    "grep"              => "yegappan/grep",
+    #wiki{{{1
+    "vimwiki"           => "vimwiki/vimwiki",
+    #shell{{{1
+    "vimproc"           => "Shougo/vimproc.vim",
+    "vimshell"          => "Shougo/vimshell.vim",
+    #IDE{{{1
+    "bufexplorer"       => "bufexplorer.zip",
+    "tagbar"            => "majutsushi/tagbar",
+    "NERD"              => "The-NERD-tree",
+    #自动补全{{{1
     "neocomplete"       => "Shougo/neocomplete.vim",
+    #snippets{{{1
     "neosnippet"        => "Shougo/neosnippet.vim",
     "neo-snippets"      => "Shougo/neosnippet-snippets",
-    #界面相关
-    "bufexplorer"       => "bufexplorer.zip",
-    "NERD"              => "The-NERD-tree",
-    "vimshell"          => "Shougo/vimshell.vim",
-    "tagbar"            => "majutsushi/tagbar",
+    #文件类型{{{1
+    "context-filetype"  => "Shougo/context_filetype.vim",
+    #perl{{{2
+    "perlomni"          => "c9s/perlomni.vim",
+    #php{{{2
+    "phpcomplete"       => "shawncplus/phpcomplete.vim",
+    "tools/phpctags"    => "vim-php/phpctags",
     "tagbar-phpctags"   => "vim-php/tagbar-phpctags.vim",
+    #c/c++{{{2
+    "clang-complete"    => "Rip-Rip/clang_complete",
+    "a"                 => "a.vim",
+    #}}}1
     );
 my %install = (
     "vimproc"           => "make",
@@ -106,3 +116,4 @@ sub gitaddr {
         return 'https://github.com/vim-scripts/'.$git.'.git';
     }
 }
+# vim:set fdm=marker:
