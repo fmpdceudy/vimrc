@@ -35,6 +35,7 @@ my %plugins = (
     "context-filetype"  => "Shougo/context_filetype.vim",
     #perl{{{2
     "perlomni"          => "c9s/perlomni.vim",
+    "perl-support"      => "perl-support.vim",
     #php{{{2
     "phpcomplete"       => "shawncplus/phpcomplete.vim",
     "tools/phpctags"    => "vim-php/phpctags",

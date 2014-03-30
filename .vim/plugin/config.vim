@@ -202,5 +202,24 @@ if nhz#Has_bundle( 'vim-ibus' )
     autocmd InsertEnter *
             \ call s:IBusRenable()
 endif
+" a{{{2
+if nhz#Has_bundle( 'a' )
+    if nhz#Has_bundle( 'perl-support' )
+        " 跟perl-support,\ih的map冲突
+        " 先禁用，当filetype不是perl时再启用
+        let g:loaded_alternateFile = 1
+        function s:enable() "{{{3
+            let s = expand("<amatch>")
+            if s != 'perl'
+                unlet g:loaded_alternateFile
+                runtime plugin/a.vim
+            endif
+        endfunction "}}}3
+        augroup filetypeplugin
+            au FileType * call s:enable()
+        augroup END
+    endif
+endif
+
 " Vim Modeline{{{1
 " vim:set fdm=marker:

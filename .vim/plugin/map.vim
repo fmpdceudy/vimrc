@@ -83,6 +83,13 @@ function s:toggle_number()
 endfunction
 " 根据文件类型运行文件{{{2
 function s:execute()
+    if &filetype == 'perl'
+        if nhz#Has_bundle( 'perl-support' )
+            return ":call Perl_Run()\<CR>"
+        else
+            return ""
+        endif
+    endif
     if nhz#Has_bundle( 'eclim' )
         if &filetype == 'java'
             return ":Java %\<CR>"
@@ -94,7 +101,11 @@ function s:check_or_compile()
     if &filetype == 'php'
         return ":!clear;php -l %\<CR>"
     elseif &filetype == 'perl'
-        return ":!clear;perl %\<CR>"
+        if nhz#Has_bundle( 'perl-support' )
+            return ":call Perl_SyntaxCheck()\<CR>"
+        else
+            return ""
+        endif
     else
         if nhz#Has_bundle( 'eclim' )
             let project = eclim#project#util#GetCurrentProjectName()
