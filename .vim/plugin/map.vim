@@ -30,13 +30,6 @@ nnoremap wl <C-W>l
 nnoremap <expr> <silent> <F5> <SID>execute()
 " <F7> 根据文件类型检查或编译文件{{{2
 nnoremap <expr> <silent> <F7> <SID>check_or_compile()
-" git{{{2
-" gs status{{{3
-nnoremap gs :!git status .<CR>
-" ga add{{{3
-nnoremap ga :!git add %<CR>
-" gd diff{{{3
-nnoremap gd :!git diff %<CR>
 " views{{{2
 " en 切换行号{{{3
 nnoremap <silent> en :call <SID>toggle_number()<CR>

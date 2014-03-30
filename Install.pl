@@ -14,6 +14,9 @@ my %plugins = (
     #工具{{{1
     "sudo"              => "sudo.vim",
     "grep"              => "yegappan/grep",
+    #git{{{2
+    "git"               => "tpope/vim-git",
+    "fugitive"          => "tpope/vim-fugitive",
     #wiki{{{1
     "vimwiki"           => "vimwiki/vimwiki",
     #shell{{{1
