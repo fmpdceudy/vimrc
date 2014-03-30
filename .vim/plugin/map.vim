@@ -99,7 +99,7 @@ endfunction
 " 根据文件类型检查或编译文件{{{2
 function s:check_or_compile()
     if &filetype == 'php'
-        return ":!clear;php -l %\<CR>"
+        return ":call CheckPHPSyntax()\<CR>"
     elseif &filetype == 'perl'
         if nhz#Has_bundle( 'perl-support' )
             return ":call Perl_SyntaxCheck()\<CR>"
@@ -114,6 +114,22 @@ function s:check_or_compile()
                 return ":Ant\<CR>"
             endif
         endif
+    endif
+endfunction
+" php检查{{{2
+function CheckPHPSyntax()
+    let php_check_syntax_cmd='ZendCodeAnalyzer --recursive --disable var-arg-unused'
+    let exeFile = expand("%:t")
+    let &makeprg = php_check_syntax_cmd
+    set errorformat=%f(line\ %l):\ %m
+    silent make %
+    if len(getqflist())>2
+        call setqflist(remove(getqflist(),2,-1))
+        copen
+    else
+        cclose
+        normal :
+        echohl WarningMsg | echo "Check over,No error!" | echohl None
     endif
 endfunction
 " Vim Modeline{{{1
