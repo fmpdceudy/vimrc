@@ -12,6 +12,7 @@ endif
 
 "文件类型检查
 augroup filetypedetect
+    autocmd BufNewFile,BufRead *.ftl        setfiletype html.ftl
 augroup END
 let &cpo = s:cpo_save
 unlet s:cpo_save

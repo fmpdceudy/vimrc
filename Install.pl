@@ -33,6 +33,11 @@ my %plugins = (
     "neo-snippets"      => "Shougo/neosnippet-snippets",
     #文件类型{{{1
     "context-filetype"  => "Shougo/context_filetype.vim",
+    #c/c++{{{2
+    "clang-complete"    => "Rip-Rip/clang_complete",
+    "a"                 => "a.vim",
+    #freemarker{{{2
+    "freemarker"        => "chaquotay/ftl-vim-syntax",
     #perl{{{2
     "perlomni"          => "c9s/perlomni.vim",
     "perl-support"      => "perl-support.vim",
@@ -40,9 +45,6 @@ my %plugins = (
     "phpcomplete"       => "shawncplus/phpcomplete.vim",
     "tools/phpctags"    => "vim-php/phpctags",
     "tagbar-phpctags"   => "vim-php/tagbar-phpctags.vim",
-    #c/c++{{{2
-    "clang-complete"    => "Rip-Rip/clang_complete",
-    "a"                 => "a.vim",
     #}}}1
     );
 my %install = (
