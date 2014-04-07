@@ -96,40 +96,16 @@ function s:execute()
         endif
     endif
 endfunction
-" 根据文件类型检查或编译文件{{{2
+" 根据文件类型检查文件{{{2
 function s:check_or_compile()
-    if &filetype == 'php'
-        return ":call CheckPHPSyntax()\<CR>"
-    elseif &filetype == 'perl'
-        if nhz#Has_bundle( 'perl-support' )
-            return ":call Perl_SyntaxCheck()\<CR>"
+    if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'h' 
+        if nhz#Has_bundle( 'clang-complete' )
+            return ":call g:ClangUpdateQuickFix()\<CR>"
         else
             return ""
         endif
-    else
-        if nhz#Has_bundle( 'eclim' )
-            let project = eclim#project#util#GetCurrentProjectName()
-            " this is a eclim project
-            if project !=''
-                return ":Ant\<CR>"
-            endif
-        endif
-    endif
-endfunction
-" php检查{{{2
-function CheckPHPSyntax()
-    let php_check_syntax_cmd='ZendCodeAnalyzer --recursive --disable var-arg-unused'
-    let exeFile = expand("%:t")
-    let &makeprg = php_check_syntax_cmd
-    set errorformat=%f(line\ %l):\ %m
-    silent make %
-    if len(getqflist())>2
-        call setqflist(remove(getqflist(),2,-1))
-        copen
-    else
-        cclose
-        normal :
-        echohl WarningMsg | echo "Check over,No error!" | echohl None
+    elseif nhz#Has_bundle( 'syntastic' )
+        return ":SyntasticCheck\<CR>"
     endif
 endfunction
 " Vim Modeline{{{1
