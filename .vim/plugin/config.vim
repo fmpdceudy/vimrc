@@ -220,6 +220,23 @@ if nhz#Has_bundle( 'a' )
         augroup END
     endif
 endif
+" syntastic{{{2
+if nhz#Has_bundle( 'syntastic' )
+    let g:syntastic_mode_map = { 'mode': 'passive',
+                \ 'active_filetypes': [],
+                \ 'passive_filetypes': [] }
+    function! s:syntax() "{{{3
+        let s = expand( "<amatch>" )
+        for name in split( s, '\.' )
+            if !exists( 'g:syntastic_' . name . '_checkers' )
+                let g:syntastic_{name}_checkers = []
+            endif
+        endfor
+    endfunction "}}}3
+    augroup filetypeplugin
+        au FileType * call s:syntax()
+    augroup END
+endif
 
 " Vim Modeline{{{1
 " vim:set fdm=marker:

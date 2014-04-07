@@ -14,13 +14,14 @@ my %plugins = (
     #工具{{{1
     "sudo"              => "sudo.vim",
     "grep"              => "yegappan/grep",
+    "syntastic"         => "scrooloose/syntastic",
+    "vimproc"           => "Shougo/vimproc.vim",
     #git{{{2
     "git"               => "tpope/vim-git",
     "fugitive"          => "tpope/vim-fugitive",
-    #wiki{{{1
+    #wiki{{{2
     "vimwiki"           => "vimwiki/vimwiki",
-    #shell{{{1
-    "vimproc"           => "Shougo/vimproc.vim",
+    #shell{{{2
     "vimshell"          => "Shougo/vimshell.vim",
     #IDE{{{1
     "bufexplorer"       => "bufexplorer.zip",
