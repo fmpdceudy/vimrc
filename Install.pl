@@ -16,6 +16,7 @@ my %plugins = (
     "grep"              => "yegappan/grep",
     "syntastic"         => "scrooloose/syntastic",
     "vimproc"           => "Shougo/vimproc.vim",
+    "unite"             => "Shougo/unite.vim",
     #git{{{2
     "git"               => "tpope/vim-git",
     "fugitive"          => "tpope/vim-fugitive",
@@ -24,7 +25,6 @@ my %plugins = (
     #shell{{{2
     "vimshell"          => "Shougo/vimshell.vim",
     #IDE{{{1
-    "bufexplorer"       => "bufexplorer.zip",
     "tagbar"            => "majutsushi/tagbar",
     "NERD"              => "The-NERD-tree",
     #自动补全{{{1

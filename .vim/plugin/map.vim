@@ -5,9 +5,9 @@ endif
 let g:loaded_plugin_map =1
 " nmap{{{1
 " windows{{{2
-if nhz#Has_bundle( 'bufexplorer' ) "{{{3
+if nhz#Has_bundle( 'unite' ) "{{{3
     " wb 打开bufexplorer
-    nnoremap <silent> wb :BufExplorer<CR>
+    nnoremap <silent> wb :Unite buffer<CR>
 endif
 if nhz#Has_bundle( 'NERD' ) "{{{3
     " wf 打开Nerd
