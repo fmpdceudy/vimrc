@@ -82,16 +82,8 @@ if nhz#Has_bundle( 'neocomplcache' ) && !nhz#Has_bundle( 'neocomplete' )
     let g:neocomplcache_dictionary_filetype_lists = {
         \ 'default' : '',
         \}
-    function s:Loaddict() "{{{4
-        let s = expand("<amatch>")
-        if s != ""
-            for name in split(s, '\.')
-                let g:neocomplcache_dictionary_filetype_lists[name] = '~/.vim/dict/'. name .'.txt'
-            endfor
-        endif
-    endfunction "}}}4
     augroup filetypeplugin
-        au FileType * call s:Loaddict()
+        au FileType * call nhz#Loaddict( g:neocomplcache_dictionary_filetype_lists )
     augroup END
     "}}}
 endif
