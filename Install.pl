@@ -39,6 +39,8 @@ my %plugins = (
     "a"                 => "a.vim",
     #freemarker{{{2
     "freemarker"        => "chaquotay/ftl-vim-syntax",
+    #javascript{{{2
+    "javascript"        => "pangloss/vim-javascript",
     #perl{{{2
     "perlomni"          => "c9s/perlomni.vim",
     "perl-support"      => "perl-support.vim",
