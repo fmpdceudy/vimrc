@@ -14,6 +14,7 @@ my %plugins = (
     #工具{{{1
     "sudo"              => "sudo.vim",
     "grep"              => "yegappan/grep",
+    "repeat"            => "tpope/vim-repeat",
     "syntastic"         => "scrooloose/syntastic",
     "vimproc"           => "Shougo/vimproc.vim",
     "unite"             => "Shougo/unite.vim",
@@ -45,9 +46,12 @@ my %plugins = (
     "perlomni"          => "c9s/perlomni.vim",
     "perl-support"      => "perl-support.vim",
     #php{{{2
+    "php.indent"        => "2072/PHP-Indenting-for-VIm",
     "phpcomplete"       => "shawncplus/phpcomplete.vim",
     "tools/phpctags"    => "vim-php/phpctags",
     "tagbar-phpctags"   => "vim-php/tagbar-phpctags.vim",
+    #prolog{{{2
+    "prolog.syntax"     => "adimit/prolog.vim",
     #}}}1
     );
 my %install = (
