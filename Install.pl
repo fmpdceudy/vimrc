@@ -30,6 +30,7 @@ my %plugins = (
     "NERD"              => "The-NERD-tree",
     #自动补全{{{1
     "neocomplete"       => "Shougo/neocomplete.vim",
+    "neocomplcache"       => "Shougo/neocomplcache.vim",
     #snippets{{{1
     "neosnippet"        => "Shougo/neosnippet.vim",
     "neo-snippets"      => "Shougo/neosnippet-snippets",
@@ -60,28 +61,8 @@ my %install = (
 );
 my $budle = ".vim/bundle/";
 mkdir ".vim/bundle/tools";
-if( !defined $ARGV[0] ) {
-    print "install: reinstall plugins\n";
-    print "update: update plugins\n";
-    exit;
-}
-if( $ARGV[0] eq "install" ) {
-    if( -f ".gitignore" ) {
-        unlink ".gitignore";
-    }
-    `echo .gitignore >> .gitignore`;
-    while( my ($path, $git) = each %plugins ) {
-        $path = $budle.$path;
-        $git = &gitaddr( $git );
-        print $path."\n";
-        if ( -d $path ) {
-            `rm -fr $path`;
-        }
-        `git clone $git $path --depth 1`;
-        `echo $path >> .gitignore`;
-    }
-}
-if( $ARGV[0] eq "update" ) {
+&update;
+sub update {
     if( -f ".gitignore" ) {
         unlink ".gitignore";
     }
@@ -109,8 +90,6 @@ if( $ARGV[0] eq "update" ) {
         }
         `echo $path >> .gitignore`;
     }
-}
-if( $ARGV[0] eq "update" || $ARGV[0] eq "install" ) {
     while( my ($path, $cmd) = each %install ) {
         $path = $budle.$path;
         chdir $path;

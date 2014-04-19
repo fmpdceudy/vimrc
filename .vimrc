@@ -6,6 +6,12 @@ set nocompatible            "关闭兼容模式，支持vim类型文件在注释
 let pathogen = expand( "~/.vim/bundle/pathogen" )
 if isdirectory( pathogen )
     execute 'source '. pathogen . '/autoload/pathogen.vim'
+    let g:pathogen_disabled=[]
+    if ( has('lua') && (v:version > 703 || v:version == 703 && has('patch885')) )
+        call add( g:pathogen_disabled, 'neocomplcache' )
+    else
+        call add( g:pathogen_disabled, 'neocomplete' )
+    endif
     execute pathogen#infect()
 endif
 " load vim, pathogen未安装时仍不报错
