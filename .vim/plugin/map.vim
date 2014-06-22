@@ -8,10 +8,8 @@ let g:loaded_plugin_map =1
 if nhz#Has_bundle( 'unite' ) "{{{3
     " wb 打开bufexplorer
     nnoremap <silent> wb :Unite buffer<CR>
-endif
-if nhz#Has_bundle( 'NERD' ) "{{{3
-    " wf 打开Nerd
-    nnoremap <silent> wf :NERDTreeToggle<CR>
+    " wf 打开file explorer
+    nnoremap <silent> wf :Unite file<CR>
 endif
 if nhz#Has_bundle( 'vimshell' ) "{{{3
     " ws 打开shell
