@@ -17,6 +17,9 @@ endif
 " load vim, pathogen未安装时仍不报错
 source ~/.vim/bundle/func/autoload/nhz.vim
 "---------------------------------------------
+" swp临时文件
+set directory=/tmp
+"---------------------------------------------
 " 编程相关
 filetype on
 filetype plugin on

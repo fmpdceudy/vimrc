@@ -30,7 +30,7 @@ my %plugins = (
     "NERD"              => "The-NERD-tree",
     #自动补全{{{1
     "neocomplete"       => "Shougo/neocomplete.vim",
-    "neocomplcache"       => "Shougo/neocomplcache.vim",
+    "neocomplcache"     => "Shougo/neocomplcache.vim",
     #snippets{{{1
     "neosnippet"        => "Shougo/neosnippet.vim",
     "neo-snippets"      => "Shougo/neosnippet-snippets",
