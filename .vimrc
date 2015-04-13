@@ -20,6 +20,9 @@ source ~/.vim/bundle/func/autoload/nhz.vim
 " swp临时文件
 set directory=/tmp
 "---------------------------------------------
+" 更改Leader
+let mapleader = ","
+"---------------------------------------------
 " 编程相关
 filetype on
 filetype plugin on
