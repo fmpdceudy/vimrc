@@ -151,6 +151,8 @@ if nhz#Has_bundle( 'eclim' )
     set completeopt=menu
     " 关闭临时文件生成
     let g:EclimTempFilesEnable = 0
+    " 在本窗口打开文件
+    let g:EclimDefaultFileOpenAction = 'edit'
 endif
 " clang_complete{{{2
 if nhz#Has_bundle( 'clang-complete' )
