@@ -18,6 +18,7 @@ my %plugins = (
     "syntastic"         => "scrooloose/syntastic",
     "vimproc"           => "Shougo/vimproc.vim",
     "unite"             => "Shougo/unite.vim",
+    "linediff"          => "AndrewRadev/linediff.vim",
     #git{{{2
     "git"               => "tpope/vim-git",
     "fugitive"          => "tpope/vim-fugitive",
