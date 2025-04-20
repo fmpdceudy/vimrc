@@ -19,6 +19,10 @@ if nhz#Has_bundle( 'tagbar' ) "{{{3
     " wt 打开或关闭tagbar
     nnoremap <silent> wt :TagbarToggle<CR>
 endif
+if nhz#Has_bundle( 'NERD' ) "{{{3
+    " wd 打开或关闭nerdtree
+    nnoremap <silent> wd :NERDTreeToggle<CR>
+endif
 " w-hjkl 切换window{{{3
 nnoremap wj <C-W>j
 nnoremap wk <C-W>k
@@ -26,8 +30,17 @@ nnoremap wh <C-W>h
 nnoremap wl <C-W>l
 " <F5> 根据文件类型运行文件{{{2
 nnoremap <expr> <silent> <F5> <SID>execute()
+" <F6> pep8{{{2
+if nhz#Has_bundle( 'pep8' )
+    let g:pep8_map='<F6>'
+endif
 " <F7> 根据文件类型检查或编译文件{{{2
 nnoremap <expr> <silent> <F7> <SID>check_or_compile()
+
+if nhz#Has_bundle( 'vim-lsp' )
+    nnoremap <expr><F8> ":LspDocumentDiagnostics\n"
+endif
+
 " views{{{2
 " en 切换行号{{{3
 nnoremap <silent> en :call <SID>toggle_number()<CR>
@@ -41,16 +54,28 @@ nnoremap tn gt
 nnoremap tp gT
 " imap{{{1
 " TAB补全和snippet跳转{{{2
-if nhz#Has_bundle( 'neosnippet' )
-    imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-                \ (pumvisible() ? "\<C-n>" : "\<Plug>(neosnippet_expand_or_jump)")
-                \: ( pumvisible() ? "\<C-n>" : "\<TAB>")
+if nhz#Has_bundle( 'pum' )
+    inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
+    inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
+    imap <expr><TAB> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<TAB>'
 else
-    imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+    if nhz#Has_bundle( 'neosnippet' )
+        imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+                    \ (pumvisible() ? "\<C-n>" : "\<Plug>(neosnippet_expand_or_jump)")
+                    \: ( pumvisible() ? "\<C-n>" : "\<TAB>")
+    else
+        imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+    endif
 endif
 " snippet 选中和跳转{{{2
 if nhz#Has_bundle( 'neosnippet' )
-    imap <expr><C-k>     "\<Plug>(neosnippet_expand_or_jump)"
+    if nhz#Has_bundle( 'pum' )
+        imap <expr><C-k> pum#visible() ?
+                \  '<Cmd>call pum#map#confirm()<CR><Plug>(neosnippet_expand_or_jump)'
+                \: '<Plug>(neosnippet_expand_or_jump)'
+    else
+        imap <expr><C-k>     '<Plug>(neosnippet_expand_or_jump)'
+    endif
 endif
 " 方向键{{{2
 if nhz#Has_bundle( 'neocomplcache' )
@@ -101,6 +126,10 @@ function s:check_or_compile()
             return ":call g:ClangUpdateQuickFix()\<CR>"
         else
             return ""
+        endif
+    elseif &filetype == 'python'
+        if nhz#Has_bundle( 'vim-flake8' )
+            return ":call Flake8()"
         endif
     elseif nhz#Has_bundle( 'syntastic' )
         return ":SyntasticCheck\<CR>"

@@ -89,6 +89,8 @@ if nhz#Has_bundle( 'neocomplcache' ) && !nhz#Has_bundle( 'neocomplete' )
 endif
 " neocomplete{{{2
 if nhz#Has_bundle( 'neocomplete' )
+    " Disable AutoComplPop.
+    let g:acp_enableAtStartup = 0
     " use neocomplete
     let g:neocomplete#enable_at_startup = 1
     " Use smartcase
@@ -118,16 +120,36 @@ if nhz#Has_bundle( 'neocomplete' )
     if nhz#Has_bundle( 'eclim' )
         let g:neocomplete#force_omni_input_patterns.java = '\%(\h\w*\|)\)\.\w*'
     endif
+
+    if nhz#Has_bundle( 'vim-lsp' )
+        let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+        let g:neocomplete#force_omni_input_patterns.go = '\%(\h\w*\|)\)\.\w*'
+
+        function! s:on_lsp_setup() abort
+        endfunction
+
+        function! s:on_lsp_buffer_enabled() abort
+            setlocal omnifunc=lsp#complete
+        endfunction
+
+        au User lsp_setup call s:on_lsp_setup()
+
+        augroup lsp_install
+            au!
+            autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+        augroup END
+    endif
+
+
     if nhz#Has_bundle( 'clang-complete' )
-        let g:neocomplete#force_overwrite_completefunc = 1
         let g:neocomplete#force_omni_input_patterns.c =
               \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
         let g:neocomplete#force_omni_input_patterns.cpp =
               \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
         let g:neocomplete#force_omni_input_patterns.objc =
-              \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+              \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
         let g:neocomplete#force_omni_input_patterns.objcpp =
-              \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+              \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
     endif
     " 根据文件类型选用dict字典{{{3
     let g:neocomplete#sources#dictionary#dictionaries = {
@@ -147,8 +169,6 @@ endif
 if nhz#Has_bundle( 'eclim' )
     " 设置omnifunc,进行补全提示
     let g:EclimCompletionMethod = 'omnifunc'
-    " 补全提示只显示menu,不显示preview
-    set completeopt=menu
     " 关闭临时文件生成
     let g:EclimTempFilesEnable = 0
     " 在本窗口打开文件
@@ -156,10 +176,15 @@ if nhz#Has_bundle( 'eclim' )
 endif
 " clang_complete{{{2
 if nhz#Has_bundle( 'clang-complete' )
+    let g:clang_periodic_quickfix = 1
+    let g:clang_complete_copen = 1
     let g:clang_complete_auto = 0
     let g:clang_auto_select = 0
+    let g:clang_omnicppcomplete_compliance = 0
+    let g:clang_make_default_keymappings = 0
     let g:clang_use_library = 1
     let g:clang_periodic_quickfix = 0
+    let g:clang_library_path = '/usr/lib/llvm-3.8/lib/'
 endif
 " vimwiki{{{2
 if nhz#Has_bundle( 'vimwiki' )

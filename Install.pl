@@ -30,8 +30,14 @@ my %plugins = (
     "tagbar"            => "majutsushi/tagbar",
     "NERD"              => "The-NERD-tree",
     #自动补全{{{1
-    "neocomplete"       => "Shougo/neocomplete.vim",
-    "neocomplcache"     => "Shougo/neocomplcache.vim",
+    "ddc"       => "Shougo/ddc.vim",
+    "denops"     => "vim-denops/denops.vim",
+    "pum"       => "Shougo/pum.vim",
+    "ddc-ui-pum" => "Shougo/ddc-ui-pum",
+    "ddc-matcher_head" => "Shougo/ddc-matcher_head",
+    "ddc-sorter_rank" => "Shougo/ddc-sorter_rank",
+    "ddc-source-around" => "Shougo/ddc-source-around",
+    "ddc-source-file" => "LumaKernel/ddc-source-file",
     #snippets{{{1
     "neosnippet"        => "Shougo/neosnippet.vim",
     "neo-snippets"      => "Shougo/neosnippet-snippets",
@@ -54,6 +60,9 @@ my %plugins = (
     "tagbar-phpctags"   => "vim-php/tagbar-phpctags.vim",
     #prolog{{{2
     "prolog.syntax"     => "adimit/prolog.vim",
+    #python{{{2
+    "vim-flake8"        => "nvie/vim-flake8",
+    "pep8"              => "pep8",
     #}}}1
     );
 my %install = (
@@ -78,8 +87,8 @@ sub update {
             my $origin = readpipe( 'git remote show origin |grep Fetch|sed "s/^ *Fetch URL: * //"' );
             chomp( $origin );
             if( $origin eq $git ) {
-                `git pull`;
                 `git checkout .`;
+                `git pull`;
                 chdir $pwd;
             } else {
                 chdir $pwd;
